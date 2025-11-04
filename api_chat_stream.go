@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
 	"net/http"
 )
 
@@ -57,6 +58,11 @@ func (api *API) chatMessagesStreamHandle(ctx context.Context, resp *http.Respons
 		default:
 			line, err := reader.ReadBytes('\n')
 			if err != nil {
+				if err == io.EOF {
+					// The data stream ended normally; this is not an error.
+					// The loop should exit here.
+					return
+				}
 				streamChannel <- ChatMessageStreamChannelResponse{
 					Err: fmt.Errorf("error reading line: %w", err),
 				}

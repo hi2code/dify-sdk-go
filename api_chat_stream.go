@@ -79,8 +79,6 @@ func (api *API) chatMessagesStreamHandle(ctx context.Context, resp *http.Respons
 					Err: errors.New("error streaming event: " + string(line)),
 				}
 				return
-			} else if resp.Answer == "" {
-				return
 			}
 			streamChannel <- resp
 		}

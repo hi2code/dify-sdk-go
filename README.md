@@ -3,7 +3,7 @@ This is the Go SDK for the Dify API, which allows you to easily integrate Dify i
 
 ## Install
 ```bash
-go get github.com/langgenius/dify-sdk-go
+go get github.com/hi2code/dify-sdk-go
 ```
 
 ## Usage
@@ -17,12 +17,13 @@ import (
 	"log"
 	"strings"
 
-	"github.com/langgenius/dify-sdk-go"
+	"github.com/hi2code/dify-sdk-go"
 )
 
 func main() {
 	var (
 		ctx = context.Background()
+		// server-host :  https://foo.com
 		c = dify.NewClient("your-dify-server-host", "your-api-key-here")
 
 		req = &dify.ChatMessageRequest{
